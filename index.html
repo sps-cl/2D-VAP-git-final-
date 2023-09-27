@@ -1,55 +1,28 @@
-// Vytvořní tlačítka "close" a připojní jej ke každé položce seznamu
-var myNodelist = document.getElementsByTagName("LI");
-var i;
-for (i = 0; i < myNodelist.length; i++) {
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  myNodelist[i].appendChild(span);
-}
-
-// Kliknutím na tlačítko "Close" smaže aktuální položku seznamu
-var close = document.getElementsByClassName("close");
-var i;
-for (i = 0; i < close.length; i++) {
-  close[i].onclick = function() {
-    var div = this.parentElement;
-    div.style.display = "none";
-  }
-}
-
-// Při kliknutí na položku v seznamu přidá symbol „zaškrtnuto“.
-var list = document.querySelector('ul');
-list.addEventListener('click', function(ev) {
-  if (ev.target.tagName === 'LI') {
-    ev.target.classList.toggle('checked');
-  }
-}, false);
-
-// Kliknutím na tlačítko "Add" vytvoří novou položku v seznamu
-function newElement() {
-  var li = document.createElement("li");
-  var inputValue = document.getElementById("myInput").value;
-  var t = document.createTextNode(inputValue);
-  li.appendChild(t);
-  if (inputValue === '') {
-    alert("Write something first!");// Když nic nenapíšeš stránka vyhodí nadpis musíš něco napsat.
-  } else {
-    document.getElementById("myUL").appendChild(li);
-  }
-  document.getElementById("myInput").value = "";
-
-  var span = document.createElement("SPAN");
-  var txt = document.createTextNode("\u00D7");
-  span.className = "close";
-  span.appendChild(txt);
-  li.appendChild(span);
-
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-    }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My To Do List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <div id="myDIV" class="header">
+        <h2 style="font-family:'Garamond'">My To Do List<i class="fa-brands fa-github"></i></i></h2>
+        <p style="font-family:'Comic Sans MS';color:rgb(242, 245, 244)">Dufkova 2.D</p>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+      </div>
+      
+      <ul id="myUL">
+        <li>Wash the dishes</li>
+        <li class="checked">Study</li>
+        <li>Play games</li>
+        <li>Buy dessert</li>
+        <li>Read a book</li>
+        <li>Organize a library</li>
+      </ul> 
+</body>
+</html>
